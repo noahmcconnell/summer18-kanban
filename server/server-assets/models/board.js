@@ -10,5 +10,4 @@ let schema = new Schema({
   created: { type: Number, required: true, default: Date.now() }
 })
 
-
 module.exports = mongoose.model(schemaName, schema)
