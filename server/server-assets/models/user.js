@@ -6,10 +6,8 @@ let ObjectId = Schema.Types.ObjectId
 let bcrypt = require('bcryptjs')
 const SALT = 10
 
-
 let schema = new Schema({
   name: { type: String, required: true },
-  //every email must be unique on the database
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   created: { type: Number, required: true, default: Date.now() }
