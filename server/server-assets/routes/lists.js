@@ -2,7 +2,7 @@ let router = require('express').Router()
 let Lists = require('../models/list')
 
 //GET
-router.get('/', (req, res, next) => {
+router.get('/api/lists', (req, res, next) => {
   Lists.find({ authorId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 //POST
-router.post('/', (req, res, next) => {
+router.post('/api/lists', (req, res, next) => {
   req.body.authorId = req.session.uid
   Lists.create(req.body)
     .then(newList => {
@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
 })
 
 //PUT
-router.put('/:id', (req, res, next) => {
+router.put('/api/lists/:id', (req, res, next) => {
   Lists.findById(req.params.id)
     .then(list => {
       if (!list.authorId.equals(req.session.uid)) {
@@ -49,7 +49,7 @@ router.put('/:id', (req, res, next) => {
 })
 
 //DELETE
-router.delete('/:id', (req, res, next) => {
+router.delete('/api/lists/:id', (req, res, next) => {
   Lists.findById(req.params.id)
     .then(list => {
       if (!list.authorId.equals(req.session.uid)) {

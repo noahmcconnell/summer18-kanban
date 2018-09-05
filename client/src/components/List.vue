@@ -1,24 +1,52 @@
 <template>
-  <h1> HI List </h1>
+  <div class="list">
+    <form @submit.prevent="addList">
+      <input type="text" placeholder="title" v-model="newList.title" required>
+      <input type="text" placeholder="description" v-model="newList.description">
+      <button type="submit">Create List</button>
+    </form>
+    <div v-for="list in lists" :key="list._id" >
+      <button @click="deleteList(list._id)">DELETE LIST</button>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-  name: "listComponent",
-  props: "list",
-  methods: {
-    getLists() {
-      this.$store.dispatch("getLists");
+  export default {
+    name: "list",
+    props: ["lists"],
+    created() {
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
+      }
     },
-    addList() {
-      this.$store.dispatch("addList");
+    mounted() {
+      this.$store.dispatch("getBoards");
     },
-    deleteList(){
-      this.$store.dispatch("deleteList")
+    data() {
+      return {
+        newList: {
+          title: "",
+          description: ""
+        }
+      };
     },
-  }
-};
-</script>
+    computed: {
+      list() {
+        return this.$store.state.lists;
+      }
+    },
+    methods: {
+      addList() {
+        this.$store.dispatch("addList", this.newList);
+        this.newList = { title: "", description: "" };
+      },
+      deleteList(listId) {
+        this.$store.dispatch("deleteList", listId);
+      }
+    }
+  };
+  </script>
 
 <style scoped>
 </style>
