@@ -1,6 +1,7 @@
 <template>
   <div class="board">
     {{boardId}}
+    {{listId}}
   </div>
 </template>
 
