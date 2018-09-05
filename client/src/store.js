@@ -21,7 +21,10 @@ export default new Vuex.Store({
   state: {
     user: {},
     boards: [],
-    activeBoard: {}
+    activeBoard: {},
+    lists: [],
+    tasks: [],
+    comments: []
   },
   mutations: {
     setUser(state, user) {
@@ -29,7 +32,11 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
-    }
+    },
+    setLists(state, lists){
+      state.lists = lists
+    },
+
   },
   actions: {
     //AUTH STUFF
@@ -74,26 +81,64 @@ export default new Vuex.Store({
           dispatch('getBoards')
         })
     },
+
+    //Lists
     getLists({ commit, dispatch }) {
       api.get('lists')
         .then(res => {
           commit('setLists', res.data)
         })
     },
-    addList({ commit, dispatch }, listData) {
-      api.post('lists', listData)
-        .then(serverList => {
-          dispatch('getLists')
-        })
-    },
-    deleteList({ commit, dispatch }, listId) {
-      api.delete('lists/' + listId)
+    addToBoard({ commit, dispatch }, listData) {
+      api.post('', listData)
         .then(res => {
           dispatch('getLists')
         })
-    }
+    },
+    removeFromBoard({ commit, dispatch }, listId) {
+      api.delete('/' + listId)
+        .then(res => {
+          dispatch('getLists')
+        })
+    },
 
-
-
+    //Tasks
+    getTasks({ commit, dispatch }) {
+      api.get('tasks')
+        .then(res => {
+          commit('setTasks', res.data)
+        })
+    },
+    addTask({ commit, dispatch }, taskData) {
+      api.post('tasks', taskData)
+        .then(serverTask => {
+          dispatch('getTasks')
+        })
+    },
+    deleteTask({ commit, dispatch }, taskId) {
+      api.delete('tasks/' + taskId)
+        .then(res => {
+          dispatch('getTasks')
+        })
+    },
+    //Comments
+    getComments({ commit, dispatch }) {
+      api.get('comments')
+        .then(res => {
+          commit('setComments', res.data)
+        })
+    },
+    addComment({ commit, dispatch }, commentData) {
+      api.post('comments', commentData)
+        .then(serverComment => {
+          dispatch('getComments')
+        })
+    },
+    deleteComment({ commit, dispatch }, commentId) {
+      api.delete('comments/' + commentId)
+        .then(res => {
+          dispatch('getComments')
+        })
+    },
   }
 })

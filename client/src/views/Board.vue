@@ -1,12 +1,12 @@
 <template>
   <div class="board">
     {{boardId}}
-    <lists />
+    <lists v-for="list in lists" />
   </div>
 </template>
 
 <script>
-import List from '@/components/List.vue'
+import lists from '@/components/List.vue'
 export default {
   name: "board",
   created() {

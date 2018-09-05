@@ -5,6 +5,7 @@ let ObjectId = Schema.Types.ObjectId
 var schema = new mongoose.Schema({
 	name: { type: String, required: true },
 	description: { type: String },
+	listId: 
 	created: { type: Number, default: Date.now() },
 	boardId: { type: ObjectId, ref: 'Board', required: true }
 });
