@@ -1,11 +1,12 @@
 <template>
   <div class="board">
     {{boardId}}
-    {{listId}}
+    <lists />
   </div>
 </template>
 
 <script>
+import List from '@/components/List.vue'
 export default {
   name: "board",
   created() {
