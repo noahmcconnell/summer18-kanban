@@ -4,17 +4,20 @@
 
 <script>
 export default {
-  name: 'listComponent',
-  props: ['list', 'inBoard'],
+  name: "listComponent",
+  props: "list",
   methods: {
-    addOrRemove(){
-      if(this.inBoard){
-        this.$store.dispatch('removeFromBoard', this.listId);
-      }
+    getLists() {
+      this.$store.dispatch("getLists");
     },
-
+    addList() {
+      this.$store.dispatch("addList");
+    },
+    deleteList(){
+      this.$store.dispatch("deleteList")
+    },
   }
-}
+};
 </script>
 
 <style scoped>
