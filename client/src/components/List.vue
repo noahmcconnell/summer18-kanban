@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    
+
     <button @click="deleteList(list._id)">DELETE LIST</button>
   </div>
 </template>
@@ -23,8 +23,6 @@
         return this.$store.state.lists;
       }
     },
-    methods: {
-    }
   };
   </script>
 

@@ -2,7 +2,7 @@ let router = require('express').Router()
 let Lists = require('../models/list')
 
 //GET
-router.get('lists', (req, res, next) => {
+router.get('/:boardId', (req, res, next) => {
   Lists.find({ boardId: req.params.boardId })
     .then(data => {
       res.send(data)
@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
 })
 
 //DELETE
-router.delete('/lists/:listId', (req, res, next) => {
+router.delete('/:listId', (req, res, next) => {
   Lists.findByIdAndRemove(req.params.listId)
     .then(() => res.send ({
       message: 'DELETED'
