@@ -36,7 +36,12 @@ export default new Vuex.Store({
     setLists(state, lists){
       state.lists = lists
     },
-
+    setTasks(state, tasks){
+      state.tasks = tasks
+    },
+    setComments(state, comments){
+      state.comments = comments
+    }
   },
   actions: {
     //AUTH STUFF
@@ -103,7 +108,7 @@ export default new Vuex.Store({
     },
 
     //Tasks
-    getTasks({ commit, dispatch },listId) {
+    getTasks({ commit, dispatch }, listId) {
       api.get('tasks/' + listId)
         .then(res => {
           commit('setTasks', res.data)
