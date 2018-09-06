@@ -48,9 +48,6 @@ export default {
         this.$store.dispatch("addList", this.newList);
         this.newList = { name: "", description: "" };
       },
-      deleteList(listId) {
-        this.$store.dispatch("deleteList", listId);
-      }
     }
 };
 </script>
