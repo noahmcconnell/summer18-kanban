@@ -14,21 +14,18 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
-  mounted() {
-    this.$store.dispatch("getLists");
-  },
   data() {
     return {
       newTask: {
-        name: "",
-
+        name: ""
       }
     };
   },
+  mounted() {
+    this.$store.dispatch("getLists");
+  },
   computed: {
-    list() {
-      return this.$store.state.tasks;
-    }
+    
   },
   methods: {
     deleteTask() {

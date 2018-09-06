@@ -2,7 +2,7 @@ let router = require('express').Router()
 let Tasks = require('../models/task')
 
 //GET
-router.get('tasks', (req, res, next) => {
+router.get('/:listId', (req, res, next) => {
   Tasks.find({ listId: req.params.listId })
     .then(data => {
       res.send(data)
@@ -14,7 +14,7 @@ router.get('tasks', (req, res, next) => {
 })
 
 //POST
-router.post('/tasks', (req, res, next) => {
+router.post('/', (req, res, next) => {
   Tasks.create(req.body)
     .then(newTask => {
       res.send(newTask)

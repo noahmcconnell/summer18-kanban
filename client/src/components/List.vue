@@ -8,16 +8,13 @@
       <button type="submit">Add Task</button>
     </form>
     <div v-for="task in tasks" :key="task._id" >
-      <!-- list component here -->
-      <list :taskData='task' />
+      <task :taskData='task' />
     </div>
   </div>
 </template>
 
-
 <script>
-
-import task from '@/components/Task.vue';
+import task from "@/components/Task.vue";
 
 export default {
   name: "list",
@@ -28,6 +25,8 @@ export default {
   created() {
     if (!this.$store.state.user._id) {
       this.$router.push({ name: "login" });
+    }else {
+      this.$store.dispatch("getTasks", this.listId);
     }
   },
   data() {
@@ -38,6 +37,7 @@ export default {
       },
       newTask: {
         name: "",
+        listId: this.listData._id
       }
     };
   },
@@ -45,15 +45,14 @@ export default {
     this.$store.dispatch("getBoards");
   },
   computed: {
-    tasks(){
+    tasks() {
       return this.$store.state.tasks;
     }
   },
   methods: {
-    addTask(){
-      this.newTask.listId = this.listId;
-      this.$store.dispatch("addList", this.newTask);
-      this.newTask = {name:""}
+    addTask() {
+      this.$store.dispatch("addTask", this.newTask);
+      this.newTask = { name: "" };
     },
 
     deleteList() {
