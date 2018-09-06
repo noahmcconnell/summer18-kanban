@@ -8,7 +8,7 @@ router.get('comments', (req, res, next) => {
       res.send(data)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -20,7 +20,7 @@ router.post('/comments', (req, res, next) => {
       res.send(newComment)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -32,7 +32,7 @@ router.delete('/comments/:commentId', (req, res, next) => {
       message: 'DELETED'
     }))
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })

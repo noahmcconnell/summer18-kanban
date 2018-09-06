@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
       res.send(data)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
       res.send(newBoard)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -35,7 +35,7 @@ router.put('/:id', (req, res, next) => {
       }
       board.update(req.body, (err) => {
         if (err) {
-          console.log(err)
+          res.status(400).send(err)
           next()
           return
         }
@@ -43,7 +43,7 @@ router.put('/:id', (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })

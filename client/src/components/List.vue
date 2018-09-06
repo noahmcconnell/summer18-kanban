@@ -15,9 +15,6 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
-  mounted() {
-    this.$store.dispatch("getBoards");
-  },
   data() {
     return {
       newList: {
@@ -25,6 +22,9 @@ export default {
         description: ""
       }
     };
+  },
+  mounted() {
+    this.$store.dispatch("getBoards");
   },
   computed: {
     list() {

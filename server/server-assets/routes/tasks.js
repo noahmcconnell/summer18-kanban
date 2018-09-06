@@ -8,7 +8,7 @@ router.get('tasks', (req, res, next) => {
       res.send(data)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -20,7 +20,7 @@ router.post('/tasks', (req, res, next) => {
       res.send(newTask)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -28,11 +28,11 @@ router.post('/tasks', (req, res, next) => {
 //DELETE
 router.delete('/tasks/:taskId', (req, res, next) => {
   Tasks.findByIdAndRemove(req.params.taskId)
-    .then(() => res.send ({
+    .then(() => res.send({
       message: 'DELETED'
     }))
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
