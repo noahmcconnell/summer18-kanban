@@ -1,15 +1,30 @@
 <template>
   <div class="list">
-    <h3>{{listData.name}}</h3>
+    <h3>{{listData.name}}</h3> 
+    <button @click="deleteList()">X</button>
     <p>{{listData.description}}</p>
-    <button @click="deleteList()">DELETE LIST</button>
+    <form @submit.prevent="addTask">
+      <input type="text" placeholder="Task Name" v-model="newTask.name" required>
+      <button type="submit">Add Task</button>
+    </form>
+    <div v-for="task in tasks" :key="task._id" >
+      <!-- list component here -->
+      <list :taskData='task' />
+    </div>
   </div>
 </template>
 
+
 <script>
+
+import task from '@/components/Task.vue';
+
 export default {
   name: "list",
   props: ["listData"],
+  component: {
+    task
+  },
   created() {
     if (!this.$store.state.user._id) {
       this.$router.push({ name: "login" });
@@ -20,6 +35,9 @@ export default {
       newList: {
         name: "",
         description: ""
+      },
+      newTask: {
+        name: "",
       }
     };
   },
@@ -27,11 +45,17 @@ export default {
     this.$store.dispatch("getBoards");
   },
   computed: {
-    list() {
-      return this.$store.state.lists;
+    tasks(){
+      return this.$store.state.tasks;
     }
   },
   methods: {
+    addTask(){
+      this.newTask.listId = this.listId;
+      this.$store.dispatch("addList", this.newTask);
+      this.newTask = {name:""}
+    },
+
     deleteList() {
       this.$store.dispatch("deleteList", this.listData);
     }
