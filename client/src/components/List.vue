@@ -1,13 +1,14 @@
 <template>
   <div class="list">
-    <h6>{{list.name}}</h6>
-    <button @click="deleteList(list._id)">DELETE LIST</button>
+    <h6>{{listData.name}}</h6>
+    <button @click="deleteList()">DELETE LIST</button>
   </div>
 </template>
 
 <script>
   export default {
     name: "list",
+    props: ["listData"],
     created() {
       if (!this.$store.state.user._id) {
         this.$router.push({ name: "login" });
@@ -17,25 +18,25 @@
       this.$store.dispatch("getBoards");
     },
     data() {
-    return {
-      newList: {
-        name: "",
-        description: ""
-      }
-    };
-  },
+      return {
+        newList: {
+          name: "",
+          description: ""
+        }
+      };
+    },
     computed: {
       list() {
         return this.$store.state.lists;
       }
     },
     methods: {
-      deleteList(listId) {
-        this.$store.dispatch("deleteList", listId);
+      deleteList() {
+        this.$store.dispatch("deleteList", listData._id);
       }
     }
   };
-  </script>
+</script>
 
 <style scoped>
 </style>

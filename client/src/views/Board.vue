@@ -8,13 +8,12 @@
     </form>
     <div v-for="list in lists" :key="list._id" >
       <!-- list component here -->
-      <list :lists='lists' />
+      <list :listData='list' />
     </div>
   </div>
 </template>
 
 <script>
-
 import list from "@/components/List.vue";
 
 export default {
@@ -25,6 +24,8 @@ export default {
   created() {
     if (!this.$store.state.user._id) {
       this.$router.push({ name: "login" });
+    } else {
+      this.$store.dispatch("getLists", this.boardId);
     }
   },
   props: ["boardId"],
@@ -34,20 +35,20 @@ export default {
     }
   },
   data() {
-      return {
-        newList: {
-          name: "",
-          description: "",
-          boardId: this.boardId
-        }
-      };
-    },
+    return {
+      newList: {
+        name: "",
+        description: "",
+        boardId: this.boardId
+      }
+    };
+  },
   methods: {
     addList() {
-        this.newList.boardId = this.boardId
-        this.$store.dispatch("addList", this.newList);
-        this.newList = { name: "", description: "" };
-      },
+      this.newList.boardId = this.boardId;
+      this.$store.dispatch("addList", this.newList);
+      this.newList = { name: "", description: "" };
     }
+  }
 };
 </script>
