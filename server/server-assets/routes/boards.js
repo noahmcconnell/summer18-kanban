@@ -57,7 +57,7 @@ router.delete('/:id', (req, res, next) => {
       }
       Boards.findByIdAndRemove(req.params.id)
         .then(data => {
-          res.send('DELORTED')
+          res.send('DELETED')
         })
     })
 })

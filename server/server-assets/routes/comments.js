@@ -2,8 +2,8 @@ let router = require('express').Router()
 let Comments = require('../models/comment')
 
 //GET
-router.get('/', (req, res, next) => {
-  Comments.find({ authorId: req.session.uid })
+router.get('comments', (req, res, next) => {
+  Comments.find({ taskId: req.params.taskId })
     .then(data => {
       res.send(data)
     })
@@ -14,8 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 //POST
-router.post('/', (req, res, next) => {
-  req.body.authorId = req.session.uid
+router.post('/comments', (req, res, next) => {
   Comments.create(req.body)
     .then(newComment => {
       res.send(newComment)
@@ -26,39 +25,15 @@ router.post('/', (req, res, next) => {
     })
 })
 
-//PUT
-router.put('/:id', (req, res, next) => {
-  Comments.findById(req.params.id)
-    .then(comment => {
-      if (!comment.authorId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
-      }
-      comment.update(req.body, (err) => {
-        if (err) {
-          console.log(err)
-          next()
-          return
-        }
-        res.send("Successfully Updated")
-      });
-    })
+//DELETE
+router.delete('/comments/:commentId', (req, res, next) => {
+  Comments.findByIdAndRemove(req.params.commentId)
+    .then(() => res.send ({
+      message: 'DELETED'
+    }))
     .catch(err => {
       console.log(err)
       next()
-    })
-})
-
-//DELETE
-router.delete('/:id', (req, res, next) => {
-  Comments.findById(req.params.id)
-    .then(comment => {
-      if (!comment.authorId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
-      }
-      Comments.findByIdAndRemove(req.params.id)
-        .then(data => {
-          res.send('DELORTED')
-        })
     })
 })
 

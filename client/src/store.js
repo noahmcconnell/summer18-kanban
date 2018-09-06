@@ -12,7 +12,7 @@ let auth = Axios.create({
 })
 
 let api = Axios.create({
-  baseURL: "//localhost:3000/api/",
+  baseURL: "//localhost:3000/api",
   timeout: 3000,
   withCredentials: true
 })
@@ -22,9 +22,9 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     activeBoard: {},
-    lists: [],
-    tasks: [],
-    comments: []
+    lists: {},
+    tasks: {},
+    comments: {}
   },
   mutations: {
     setUser(state, user) {
@@ -83,8 +83,8 @@ export default new Vuex.Store({
     },
 
     //Lists
-    getLists({ commit, dispatch }) {
-      api.get('lists')
+    getLists({ commit, dispatch }, boardId) {
+      api.get('board/${boardId}/lists')
         .then(res => {
           commit('setLists', res.data)
         })

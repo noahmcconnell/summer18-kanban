@@ -2,8 +2,8 @@ let router = require('express').Router()
 let Tasks = require('../models/task')
 
 //GET
-router.get('/', (req, res, next) => {
-  Tasks.find({ authorId: req.session.uid })
+router.get('tasks', (req, res, next) => {
+  Tasks.find({ listId: req.params.listId })
     .then(data => {
       res.send(data)
     })
@@ -14,8 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 //POST
-router.post('/', (req, res, next) => {
-  req.body.authorId = req.session.uid
+router.post('/tasks', (req, res, next) => {
   Tasks.create(req.body)
     .then(newTask => {
       res.send(newTask)
@@ -26,39 +25,15 @@ router.post('/', (req, res, next) => {
     })
 })
 
-//PUT
-router.put('/:id', (req, res, next) => {
-  Tasks.findById(req.params.id)
-    .then(task => {
-      if (!task.authorId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
-      }
-      task.update(req.body, (err) => {
-        if (err) {
-          console.log(err)
-          next()
-          return
-        }
-        res.send("Successfully Updated")
-      });
-    })
+//DELETE
+router.delete('/tasks/:taskId', (req, res, next) => {
+  Tasks.findByIdAndRemove(req.params.taskId)
+    .then(() => res.send ({
+      message: 'DELETED'
+    }))
     .catch(err => {
       console.log(err)
       next()
-    })
-})
-
-//DELETE
-router.delete('/:id', (req, res, next) => {
-  Tasks.findById(req.params.id)
-    .then(task => {
-      if (!task.authorId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
-      }
-      Tasks.findByIdAndRemove(req.params.id)
-        .then(data => {
-          res.send('DELORTED')
-        })
     })
 })
 
