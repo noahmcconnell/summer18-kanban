@@ -52,7 +52,7 @@ export default {
   methods: {
     addTask() {
       this.$store.dispatch("addTask", this.newTask);
-      this.newTask = { name: "" };
+      this.newTask = { name: "", listId: this.listData._id };
     },
 
     deleteList() {
