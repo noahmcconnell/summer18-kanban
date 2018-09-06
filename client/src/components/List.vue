@@ -7,36 +7,36 @@
 </template>
 
 <script>
-  export default {
-    name: "list",
-    props: ["listData"],
-    created() {
-      if (!this.$store.state.user._id) {
-        this.$router.push({ name: "login" });
-      }
-    },
-    mounted() {
-      this.$store.dispatch("getBoards");
-    },
-    data() {
-      return {
-        newList: {
-          name: "",
-          description: ""
-        }
-      };
-    },
-    computed: {
-      list() {
-        return this.$store.state.lists;
-      }
-    },
-    methods: {
-      deleteList() {
-        this.$store.dispatch("deleteList", listData._id);
-      }
+export default {
+  name: "list",
+  props: ["listData"],
+  created() {
+    if (!this.$store.state.user._id) {
+      this.$router.push({ name: "login" });
     }
-  };
+  },
+  mounted() {
+    this.$store.dispatch("getBoards");
+  },
+  data() {
+    return {
+      newList: {
+        name: "",
+        description: ""
+      }
+    };
+  },
+  computed: {
+    list() {
+      return this.$store.state.lists;
+    }
+  },
+  methods: {
+    deleteList() {
+      this.$store.dispatch("deleteList", this.listData);
+    }
+  }
+};
 </script>
 
 <style scoped>
