@@ -1,6 +1,7 @@
 <template>
   <div class="list">
-    <h6>{{listData.name}}</h6>
+    <h3>{{listData.name}}</h3>
+    <p>{{listData.description}}</p>
     <button @click="deleteList()">DELETE LIST</button>
   </div>
 </template>
