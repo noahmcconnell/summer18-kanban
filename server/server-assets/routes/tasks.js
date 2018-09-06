@@ -26,7 +26,7 @@ router.post('/tasks', (req, res, next) => {
 })
 
 //DELETE
-router.delete('/tasks/:taskId', (req, res, next) => {
+router.delete('/:taskId', (req, res, next) => {
   Tasks.findByIdAndRemove(req.params.taskId)
     .then(() => res.send({
       message: 'DELETED'

@@ -84,7 +84,7 @@ export default new Vuex.Store({
 
     //Lists
     getLists({ commit, dispatch }, boardId) {
-      api.get('lists/'+boardId)
+      api.get('lists/'+ boardId)
         .then(res => {
           commit('setLists', res.data)
         })
@@ -104,40 +104,40 @@ export default new Vuex.Store({
 
     //Tasks
     getTasks({ commit, dispatch }) {
-      api.get('tasks')
+      api.get('tasks/' + taskId)
         .then(res => {
           commit('setTasks', res.data)
         })
     },
     addTask({ commit, dispatch }, taskData) {
       api.post('tasks', taskData)
-        .then(serverTask => {
-          dispatch('getTasks')
+        .then(res => {
+          dispatch('getTasks', taskData.listId)
         })
     },
-    deleteTask({ commit, dispatch }, taskId) {
-      api.delete('tasks/' + taskId)
+    deleteTask({ commit, dispatch }, task) {
+      api.delete('tasks/' + task._id)
         .then(res => {
-          dispatch('getTasks')
+          dispatch('getTasks', task.listId)
         })
     },
     //Comments
     getComments({ commit, dispatch }) {
-      api.get('comments')
+      api.get('comments/' + commentId)
         .then(res => {
           commit('setComments', res.data)
         })
     },
     addComment({ commit, dispatch }, commentData) {
       api.post('comments', commentData)
-        .then(serverComment => {
-          dispatch('getComments')
+        .then(res => {
+          dispatch('getComments', commentData.taskId)
         })
     },
-    deleteComment({ commit, dispatch }, commentId) {
-      api.delete('comments/' + commentId)
+    deleteComment({ commit, dispatch }, comment) {
+      api.delete('comments/' + comment._id)
         .then(res => {
-          dispatch('getComments')
+          dispatch('getComments', comment.taskId)
         })
     },
   }
