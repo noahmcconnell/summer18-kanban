@@ -1,7 +1,7 @@
 <template>
     <div class="task">
-        <p>{{comment.comment}}</p>
-        <button @click="deleteComment()">DELETE comment</button>
+      <p>{{comment.comment}}</p>
+      <button @click="deleteComment()">DELETE comment</button>
     </div>    
 </template>
 
@@ -14,21 +14,15 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
+    data() {
+      return {
+        newComment: {
+          comment: "",
+        }
+      };
+    },
   mounted() {
     this.$store.dispatch("getComment");
-  },
-  data() {
-    return {
-      newComment: {
-        name: "",
-
-      }
-    };
-  },
-  computed: {
-    list() {
-      return this.$store.state.comment;
-    }
   },
   methods: {
     deleteComment() {
