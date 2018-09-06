@@ -19,14 +19,14 @@ import task from "@/components/Task.vue";
 export default {
   name: "list",
   props: ["listData"],
-  component: {
+  components: {
     task
   },
   created() {
     if (!this.$store.state.user._id) {
       this.$router.push({ name: "login" });
     }else {
-      this.$store.dispatch("getTasks", this.listId);
+      this.$store.dispatch("getTasks", this.listData._id);
     }
   },
   data() {
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     tasks() {
-      return this.$store.state.tasks;
+      return this.$store.state.tasks[this.listData._id];
     }
   },
   methods: {

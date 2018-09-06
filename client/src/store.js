@@ -36,8 +36,9 @@ export default new Vuex.Store({
     setLists(state, lists){
       state.lists = lists
     },
-    setTasks(state, tasks){
-      state.tasks = tasks
+    setTasks(state, data){
+      Vue.set(state.tasks, data.listId, data.tasks)
+      //state.tasks[data.listId] = data.tasks
     },
     setComments(state, comments){
       state.comments = comments
@@ -111,7 +112,7 @@ export default new Vuex.Store({
     getTasks({ commit, dispatch }, listId) {
       api.get('tasks/' + listId)
         .then(res => {
-          commit('setTasks', res.data)
+          commit('setTasks', {listId, tasks: res.data})
         })
     },
     addTask({ commit, dispatch }, taskData) {

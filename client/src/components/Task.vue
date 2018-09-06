@@ -1,6 +1,6 @@
 <template>
     <div class="task">
-        <p>{{task.name}}</p>
+        <p>{{taskData.name}}</p>
         <button @click="deleteTask()">DELETE Task</button>
     </div>    
 </template>
@@ -21,9 +21,7 @@ export default {
       }
     };
   },
-  mounted() {
-    this.$store.dispatch("getLists");
-  },
+  
   computed: {
     
   },
