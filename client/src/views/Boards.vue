@@ -21,9 +21,6 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
-  mounted() {
-    this.$store.dispatch("getBoards");
-  },
   data() {
     return {
       newBoard: {
@@ -31,6 +28,9 @@ export default {
         description: ""
       }
     };
+  },
+  mounted() {
+    this.$store.dispatch("getBoards");
   },
   computed: {
     boards() {

@@ -18,6 +18,7 @@ import list from "@/components/List.vue";
 
 export default {
   name: "board",
+  props: ["boardId"],
   components: {
     list
   },
@@ -28,20 +29,19 @@ export default {
       this.$store.dispatch("getLists", this.boardId);
     }
   },
-  props: ["boardId"],
+    data() {
+      return {
+        newList: {
+          name: "",
+          description: "",
+          boardId: this.boardId
+        }
+      };
+    },
   computed: {
     lists() {
       return this.$store.state.lists;
     }
-  },
-  data() {
-    return {
-      newList: {
-        name: "",
-        description: "",
-        boardId: this.boardId
-      }
-    };
   },
   methods: {
     addList() {
