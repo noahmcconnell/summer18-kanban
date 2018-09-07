@@ -1,8 +1,13 @@
 <template>
     <div class="task">
-        <p>{{taskData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteTask()"><i class="fa fa-times"></i></button></p>
-        
-
+        <h5>{{taskData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteTask()"><i class="fa fa-times"></i></button></h5>
+        <form @submit.prevent="addComment">
+          <input type="text" placeholder="Comment" v-model="newComment.comment" required>
+          <button type="submit">Add Comment</button>
+        </form>
+      <div v-for="comment in comments" :key="comment._id">
+        <comment :commentData='comment'/>
+      </div>
     </div>    
 </template>
 

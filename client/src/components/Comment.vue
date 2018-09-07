@@ -1,6 +1,6 @@
 <template>
     <div class="task">
-      <p>{{comment.comment}}</p>
+      <p>{{commentData.comment}}</p>
       <button @click="deleteComment()">DELETE comment</button>
     </div>    
 </template>
