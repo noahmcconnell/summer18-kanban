@@ -1,7 +1,7 @@
 <template>
     <div class="task">
-        <p>{{taskData.name}}</p>
-        <button @click="deleteTask()">DELETE Task</button>
+        <p>{{taskData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteTask()"><i class="fa fa-times"></i></button></p>
+        
 
     </div>    
 </template>
@@ -51,3 +51,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.btn-circle {
+  width: 20px;
+  height: 20px;
+  padding: 0px 0px 15px 0px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 0;
+}
+</style>

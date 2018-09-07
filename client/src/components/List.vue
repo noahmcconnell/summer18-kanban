@@ -1,7 +1,7 @@
 <template>
   <div class="list">
-    <h3>{{listData.name}}</h3> 
-    <button @click="deleteList()">X</button>
+    <h3>{{listData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button></h3> 
+    
     <p>{{listData.description}}</p>
     <form @submit.prevent="addTask">
       <input type="text" placeholder="Task Name" v-model="newTask.name" required>
@@ -25,7 +25,7 @@ export default {
   created() {
     if (!this.$store.state.user._id) {
       this.$router.push({ name: "login" });
-    }else {
+    } else {
       this.$store.dispatch("getTasks", this.listData._id);
     }
   },
@@ -63,4 +63,14 @@ export default {
 </script>
 
 <style scoped>
+.btn-circle {
+  width: 20px;
+  height: 20px;
+  padding: 0px 0px 15px 0px;
+  border-radius: 0px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 0;
+};
+
 </style>
