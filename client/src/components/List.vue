@@ -1,6 +1,6 @@
 <template>
-  <div class="list">
-    <h3>{{listData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button></h3> 
+  <div class="list card">
+    <h3>List: {{listData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button></h3> 
     
     <p>{{listData.description}}</p>
     <form @submit.prevent="addTask">
@@ -72,5 +72,4 @@ export default {
   font-size: 18px;
   line-height: 0;
 };
-
 </style>

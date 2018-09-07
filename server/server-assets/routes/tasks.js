@@ -25,6 +25,14 @@ router.post('/', (req, res, next) => {
     })
 })
 
+//PUT
+router.put('/:taskId', (req, res, next) => {
+  Tasks.findByIdAndUpdate(req.params.taskId, req.body)
+  .then(() => res.send({
+    message: 'UPDATED'
+  }))
+})
+
 //DELETE
 router.delete('/:taskId', (req, res, next) => {
   Tasks.findByIdAndRemove(req.params.taskId)

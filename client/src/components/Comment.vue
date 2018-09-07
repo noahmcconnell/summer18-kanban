@@ -1,7 +1,9 @@
 <template>
-    <div class="task">
-      <p>{{commentData.comment}}</p>
-      <button @click="deleteComment()">DELETE comment</button>
+    <div class="comment">
+      <div class="card">
+      <p>{{commentData.comment}}<button @click="deleteComment()">DELETE</button></p>
+      </div>
+      
     </div>    
 </template>
 
@@ -21,9 +23,6 @@ export default {
         }
       };
     },
-  mounted() {
-    this.$store.dispatch("getComment");
-  },
   methods: {
     deleteComment() {
       this.$store.dispatch("deleteComment", this.commentData);

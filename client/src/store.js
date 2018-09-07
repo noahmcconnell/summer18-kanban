@@ -40,7 +40,7 @@ export default new Vuex.Store({
       Vue.set(state.tasks, data.listId, data.tasks)
     },
     setComments(state, data){
-      Vue.set(state.comments, data.taskId, data.comment)
+      Vue.set(state.comments, data.taskId, data.comments)
     }
   },
   actions: {
@@ -65,6 +65,13 @@ export default new Vuex.Store({
           commit('setUser', res.data)
           router.push({ name: 'boards' })
         })
+    },
+    logout({commit, dispatch}) {
+      auth.delete('logout')
+      .then(res => {
+        commit('setUser', {})
+        router.push({name: 'login'})
+      })
     },
 
     //BOARDS
@@ -125,6 +132,13 @@ export default new Vuex.Store({
         .then(res => {
           dispatch('getTasks', task.listId)
         })
+    },
+    moveTask({commit, dispatch}, taskData) {
+      api.put('tasks/' + taskData._id, taskData)
+      .then(res => {
+        dispatch('getTasks', taskData.listId)
+        dispatch('getTasks', taskData.oldListId)
+      })
     },
     //Comments
     getComments({ commit, dispatch }, taskId) {
