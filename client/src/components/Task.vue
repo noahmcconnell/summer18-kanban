@@ -1,12 +1,19 @@
 <template>
-  <div class="task">
-    <h5><button class="btn btn-danger btn-sm btn-circle" @click="deleteTask()"><i class="fa fa-times"></i></button>{{taskData.name}} <select v-model="newListId">
-      <option disabled value="">Select List</option>
-      <option v-for="list in lists" :value="list._id" :key="list._id">
-        {{list.name}}
-      </option>
-      </select> 
-      <button @click="moveTask()" class="btn btn-success btn-sm move-btn-style">Move</button></h5>
+  <div class="task card text-white bg-secondary mb-3 container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-sm-5 offset-2">
+      <h5><button class="btn btn-danger btn-sm btn-circle" style="margin-bottom: 3px;" @click="deleteTask()"><i class="fa fa-times"></i></button>{{taskData.name}}</h5>
+      </div>
+      <div class="col-sm-5">
+      <select v-model="newListId">
+        <option disabled value="">Select List</option>
+        <option v-for="list in lists" :value="list._id" :key="list._id">
+          {{list.name}}
+        </option>
+      </select>
+      <button @click="moveTask()" class="btn btn-success btn-sm move-btn-style" style="height: 30px">Move</button>
+      </div>
+    </div>
     <form @submit.prevent="addComment">
       <input type="text" placeholder="Comment" v-model="newComment.comment" required>
       <button type="submit">Add Comment</button>
@@ -53,8 +60,8 @@
         return this.$store.state.comments[this.taskData._id];
       },
       lists() {
-      return this.$store.state.lists;
-    }
+        return this.$store.state.lists;
+      }
     },
     methods: {
       addComment() {
@@ -81,8 +88,10 @@
     border-radius: 10px;
     font-size: 18px;
     line-height: 0;
-  };
-  .move-btn-style{
+  }
+
+  ;
+  .move-btn-style {
     width: 30px;
     height: 3px;
   }
