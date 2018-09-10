@@ -1,5 +1,5 @@
 <template>
-  <div class="list card text-white bg-info mb-3">
+  <div class="list card text-white bg-info mb-3" style=" box-shadow: 5px 5px black;">
      <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button>
     <h3 style="color: white; text-shadow: 2px 2px black;">{{listData.name}}</h3>
     
