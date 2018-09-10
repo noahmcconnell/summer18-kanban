@@ -1,10 +1,11 @@
 <template>
   <div class="login color-gradient container-fluid">
-    <div class="card row" style="width: 18rem;">
+    <div class="row justify-content-center">
+    <div class="card col-sm-3" style="width: 18rem;">
     <form class="card-body" v-if="loginForm" @submit.prevent="loginUser">
       <input class="top-form" type="email" v-model="creds.email" placeholder="email">
       <input type="password" v-model="creds.password" placeholder="password">
-      <button type="submit">Login</button>
+      <button style="margin-right: 9rem;" type="submit">Login</button>
     </form>
     <form v-else @submit.prevent="register">
       <input type="text" v-model="newUser.name" placeholder="name">
@@ -15,6 +16,7 @@
     <div @click="loginForm = !loginForm">
       <p v-if="loginForm">No account? Click here to Register</p>
       <p v-else>Already have an account? Click here to Login</p>
+    </div>
     </div>
     </div>
     </div>
@@ -55,6 +57,10 @@ export default {
 };
 .justify-content-center{
   display: flex;
-  justify-content: center;
+  justify-content: center
+};
+.align-content-center{
+  display: flex;
+  align-content: center;
 }
 </style>
