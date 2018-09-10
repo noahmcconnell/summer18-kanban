@@ -1,7 +1,8 @@
 <template>
     <div class="comment">
       <div class="card">
-      <p>{{commentData.comment}}<button @click="deleteComment()">DELETE</button></p>
+      <p>{{commentData.comment}}</p>
+      <button class="btn btn-danger btn-sm btn-circle" @click="deleteComment()"><i class="fa fa-times"></i></button>
       </div>
       
     </div>    

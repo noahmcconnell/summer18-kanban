@@ -1,6 +1,7 @@
 <template>
   <div class="boards">
     WELCOME TO THE BOARDS!!!
+    <button @click="logout">Logout</button>
     <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required>
       <input type="text" placeholder="description" v-model="newBoard.description">
@@ -44,6 +45,9 @@ export default {
     },
     deleteBoard(boardId) {
       this.$store.dispatch("deleteBoard", boardId);
+    },
+    logout(){
+      this.$store.dispatch("logout", this.login)
     }
   }
 };

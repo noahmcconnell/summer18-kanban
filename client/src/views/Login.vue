@@ -1,7 +1,8 @@
 <template>
-  <div class="login">
-    <form v-if="loginForm" @submit.prevent="loginUser">
-      <input type="email" v-model="creds.email" placeholder="email">
+  <div class="login color-gradient container-fluid">
+    <div class="card row" style="width: 18rem;">
+    <form class="card-body" v-if="loginForm" @submit.prevent="loginUser">
+      <input class="top-form" type="email" v-model="creds.email" placeholder="email">
       <input type="password" v-model="creds.password" placeholder="password">
       <button type="submit">Login</button>
     </form>
@@ -15,7 +16,8 @@
       <p v-if="loginForm">No account? Click here to Register</p>
       <p v-else>Already have an account? Click here to Login</p>
     </div>
-  </div>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -45,3 +47,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.color-gradient{
+  background-image: linear-gradient(maroon, grey); 
+  height: 100vh;
+};
+.justify-content-center{
+  display: flex;
+  justify-content: center;
+}
+</style>

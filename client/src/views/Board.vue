@@ -1,6 +1,7 @@
 <template>
   <div class="board container-fluid">
     <h1>Create a List</h1>
+    <button @click="logout">Logout</button>
     <form @submit.prevent="addList">
       <input type="text" placeholder="List Name" v-model="newList.name" required>
       <input type="text" placeholder="Description" v-model="newList.description">
@@ -50,6 +51,9 @@ export default {
       this.newList.boardId = this.boardId;
       this.$store.dispatch("addList", this.newList);
       this.newList = { name: "", description: "" };
+    },
+    logout() {
+      this.$store.dispatch("logout", this.login);
     }
   }
 };
