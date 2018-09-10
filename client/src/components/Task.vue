@@ -5,7 +5,7 @@
       <h5><button class="btn btn-danger btn-sm btn-circle" style="margin-bottom: 3px;" @click="deleteTask()"><i class="fa fa-times"></i></button>{{taskData.name}}</h5>
       </div>
       <div class="col-sm-5">
-      <select v-model="newListId">
+      <select style="height: 30px;" v-model="newListId">
         <option disabled value="">Select List</option>
         <option v-for="list in lists" :value="list._id" :key="list._id">
           {{list.name}}
