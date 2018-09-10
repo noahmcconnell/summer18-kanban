@@ -1,17 +1,17 @@
 <template>
   <div class="login color-gradient container-fluid">
     <div class="row justify-content-center">
-    <div class="card col-sm-3" style="width: 18rem;">
+    <div class="card col-sm-3" style="width: 18rem; margin-top: 22rem;">
     <form class="card-body" v-if="loginForm" @submit.prevent="loginUser">
       <input class="top-form" type="email" v-model="creds.email" placeholder="email">
       <input type="password" v-model="creds.password" placeholder="password">
       <button style="margin-right: 9rem;" type="submit">Login</button>
     </form>
-    <form v-else @submit.prevent="register">
+    <form class="card-body" v-else @submit.prevent="register">
       <input type="text" v-model="newUser.name" placeholder="name">
       <input type="email" v-model="newUser.email" placeholder="email">
       <input type="password" v-model="newUser.password" placeholder="password">
-      <button type="submit">Create Account</button>
+      <button style="margin-right: 4rem;" type="submit">Create Account</button>
     </form>
     <div @click="loginForm = !loginForm">
       <p v-if="loginForm">No account? Click here to Register</p>

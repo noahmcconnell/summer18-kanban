@@ -1,6 +1,7 @@
 <template>
   <div class="list card">
-    <h3>List: {{listData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button></h3> 
+     <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button>
+    <h3>{{listData.name}}</h3>
     
     <p>{{listData.description}}</p>
     <form @submit.prevent="addTask">
@@ -65,7 +66,7 @@ export default {
 <style scoped>
 .btn-circle {
   width: 20px;
-  height: 20px;
+  height: 22px;
   padding: 0px 0px 15px 0px;
   border-radius: 0px;
   text-align: center;

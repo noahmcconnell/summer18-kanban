@@ -1,14 +1,12 @@
 <template>
   <div class="task">
-    <select v-model="newListId">
-      <option disabled value="">Please select one</option>
+    <h5><button class="btn btn-danger btn-sm btn-circle" @click="deleteTask()"><i class="fa fa-times"></i></button>{{taskData.name}} <select v-model="newListId">
+      <option disabled value="">Select List</option>
       <option v-for="list in lists" :value="list._id" :key="list._id">
         {{list.name}}
       </option>
       </select> 
-      <button @click="moveTask()" class="btn btn-success btn-sm move-btn-style">Move</button>
-    
-    <h5>Task: {{taskData.name}} <button class="btn btn-danger btn-sm btn-circle" @click="deleteTask()"><i class="fa fa-times"></i></button></h5>
+      <button @click="moveTask()" class="btn btn-success btn-sm move-btn-style">Move</button></h5>
     <form @submit.prevent="addComment">
       <input type="text" placeholder="Comment" v-model="newComment.comment" required>
       <button type="submit">Add Comment</button>
@@ -81,7 +79,6 @@
     height: 20px;
     padding: 0px 0px 15px 0px;
     border-radius: 10px;
-    text-align: center;
     font-size: 18px;
     line-height: 0;
   };
