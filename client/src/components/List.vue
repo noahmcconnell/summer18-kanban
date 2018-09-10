@@ -1,9 +1,9 @@
 <template>
   <div class="list card text-white bg-info mb-3">
      <button class="btn btn-danger btn-sm btn-circle" @click="deleteList()"><i class="fa fa-trash"></i></button>
-    <h3>{{listData.name}}</h3>
+    <h3 style="color: white; text-shadow: 2px 2px black;">{{listData.name}}</h3>
     
-    <p>{{listData.description}}</p>
+    <p style="color: white; text-shadow: 1px 1px black;">{{listData.description}}</p>
     <form @submit.prevent="addTask">
       <input type="text" placeholder="Task Name" v-model="newTask.name" required>
       <button type="submit">Add Task</button>
