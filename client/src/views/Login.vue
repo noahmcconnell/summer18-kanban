@@ -14,7 +14,7 @@
       <button style="margin-right: 4rem;" type="submit">Create Account</button>
     </form>
     <div @click="loginForm = !loginForm">
-      <p v-if="loginForm">No account? Click here to Register</p>
+      <p v-if="loginForm">Click here to Register for new account</p>
       <p v-else>Already have an account? Click here to Login</p>
     </div>
     </div>
